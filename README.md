@@ -27,3 +27,14 @@ Manuscript YAML excerpts are illustrative. The evidence companion contains redac
 ## Start here
 
 Read the paper, then examine the [checkpoint verification log](Evidence_Companion/R1/evidence/verify.jsonl) and [checksums](Evidence_Companion/SHA256SUMS.json). The [companion README](Evidence_Companion/README.md) documents evidence status and redactions.
+
+
+## License
+
+The [MIT License](LICENSE) applies only to the original Python scripts
+authored by Michael Ifeanyi in `Evidence_Companion/`. It does not cover
+evidence logs, captured outputs, checkpoint files, redacted records,
+or third-party material.
+
+The [Zenodo paper](https://doi.org/10.5281/zenodo.24486098) is licensed
+separately under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
