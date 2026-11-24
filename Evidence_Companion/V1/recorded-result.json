@@ -1,0 +1,117 @@
+{
+  "id": "V1-FICTION-001",
+  "label": "Fictional offline tabletop",
+  "observed_utc": "2026-11-22T23:10:30+00:00",
+  "decision_owner": "Image owner (fictional role)",
+  "review_role": "Vulnerability coordinator (fictional role)",
+  "fixture_and_checker_sha256": {
+    "advisory.json": "b65a8e1fa264cf064643326c0370a1f898f31002e045c6400b7d2cb50f117381",
+    "build_inventory.csv": "929a3a3a840b788ccc98476a6b4399362c7b2b2a5ed1228fbbee4c2cdb1cf839",
+    "deployed_inventory.csv": "143721c38706b5c2bcbb984a933189beefbc1383ca9abf0d592da9d4d91a4ad0",
+    "verify_tabletop.py": "a5870e71c50a00814e2ba2f1029d01356b2fb461d1f285542a1c0e5bdb297825"
+  },
+  "scenarios": {
+    "before": {
+      "decision": "open",
+      "affected": [
+        "serving/replica-1",
+        "serving/replica-2"
+      ],
+      "verified_fixed": [],
+      "excluded": [
+        "monitor/collector-1"
+      ],
+      "artifact_mapping": {
+        "serving/replica-1": {
+          "desired": "A",
+          "deployed": "A"
+        },
+        "serving/replica-2": {
+          "desired": "A",
+          "deployed": "A"
+        },
+        "monitor/collector-1": {
+          "desired": "C",
+          "deployed": "C"
+        }
+      }
+    },
+    "tag_only": {
+      "decision": "open",
+      "affected": [
+        "serving/replica-1",
+        "serving/replica-2"
+      ],
+      "verified_fixed": [],
+      "excluded": [
+        "monitor/collector-1"
+      ],
+      "artifact_mapping": {
+        "serving/replica-1": {
+          "desired": "A",
+          "deployed": "A"
+        },
+        "serving/replica-2": {
+          "desired": "A",
+          "deployed": "A"
+        },
+        "monitor/collector-1": {
+          "desired": "C",
+          "deployed": "C"
+        }
+      }
+    },
+    "partial_rollout": {
+      "decision": "open",
+      "affected": [
+        "serving/replica-2"
+      ],
+      "verified_fixed": [
+        "serving/replica-1"
+      ],
+      "excluded": [
+        "monitor/collector-1"
+      ],
+      "artifact_mapping": {
+        "serving/replica-1": {
+          "desired": "B",
+          "deployed": "B"
+        },
+        "serving/replica-2": {
+          "desired": "B",
+          "deployed": "A"
+        },
+        "monitor/collector-1": {
+          "desired": "C",
+          "deployed": "C"
+        }
+      }
+    },
+    "complete_rollout": {
+      "decision": "remediated_closed",
+      "affected": [],
+      "verified_fixed": [
+        "serving/replica-1",
+        "serving/replica-2"
+      ],
+      "excluded": [
+        "monitor/collector-1"
+      ],
+      "artifact_mapping": {
+        "serving/replica-1": {
+          "desired": "B",
+          "deployed": "B"
+        },
+        "serving/replica-2": {
+          "desired": "B",
+          "deployed": "B"
+        },
+        "monitor/collector-1": {
+          "desired": "C",
+          "deployed": "C"
+        }
+      }
+    }
+  },
+  "outcome": "PASS"
+}

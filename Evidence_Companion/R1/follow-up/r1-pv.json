@@ -1,0 +1,68 @@
+{
+    "apiVersion": "v1",
+    "kind": "PersistentVolume",
+    "metadata": {
+        "annotations": {
+            "pv.kubernetes.io/provisioned-by": "pd.csi.storage.gke.io",
+            "volume.kubernetes.io/provisioner-deletion-secret-name": "",
+            "volume.kubernetes.io/provisioner-deletion-secret-namespace": ""
+        },
+        "creationTimestamp": "2026-11-23T00:58:36Z",
+        "finalizers": [
+            "external-provisioner.volume.kubernetes.io/finalizer",
+            "kubernetes.io/pv-protection",
+            "external-attacher/pd-csi-storage-gke-io"
+        ],
+        "name": "pvc-00000000-0000-4000-8000-000000000019",
+        "resourceVersion": "1795395517818447017",
+        "uid": "00000000-0000-4000-8000-000000000002"
+    },
+    "spec": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "capacity": {
+            "storage": "1Gi"
+        },
+        "claimRef": {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "name": "r1-state",
+            "namespace": "paper-r1",
+            "resourceVersion": "1795395515598175013",
+            "uid": "00000000-0000-4000-8000-000000000019"
+        },
+        "csi": {
+            "driver": "pd.csi.storage.gke.io",
+            "fsType": "ext4",
+            "volumeAttributes": {
+                "storage.kubernetes.io/csiProvisionerIdentity": "1795392331639-8126-pd.csi.storage.gke.io"
+            },
+            "volumeHandle": "projects/example-project/zones/us-central1-a/disks/pvc-00000000-0000-4000-8000-000000000019"
+        },
+        "nodeAffinity": {
+            "required": {
+                "nodeSelectorTerms": [
+                    {
+                        "matchExpressions": [
+                            {
+                                "key": "topology.gke.io/zone",
+                                "operator": "In",
+                                "values": [
+                                    "us-central1-a"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "persistentVolumeReclaimPolicy": "Delete",
+        "storageClassName": "standard-rwo",
+        "volumeMode": "Filesystem"
+    },
+    "status": {
+        "lastPhaseTransitionTime": "2026-11-23T00:58:36Z",
+        "phase": "Bound"
+    }
+}

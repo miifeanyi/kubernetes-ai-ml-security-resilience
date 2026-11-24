@@ -1,0 +1,5 @@
+{
+  "resolver": "192.0.2.11",
+  "expected_service_ip": "192.0.2.12",
+  "fqdn": "inference.n1-serving.svc.cluster.local"
+}

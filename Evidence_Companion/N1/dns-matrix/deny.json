@@ -1,0 +1,50 @@
+{
+  "stage": "deny",
+  "outcome": "PASS",
+  "observations": [
+    {
+      "transport": "UDP",
+      "expected": "timeout",
+      "attempts": [
+        {
+          "result": "timeout"
+        },
+        {
+          "result": "timeout"
+        },
+        {
+          "result": "timeout"
+        }
+      ],
+      "health_control": {
+        "result": "allow",
+        "addresses": [
+          "192.0.2.12"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "transport": "TCP",
+      "expected": "timeout",
+      "attempts": [
+        {
+          "result": "timeout"
+        },
+        {
+          "result": "timeout"
+        },
+        {
+          "result": "timeout"
+        }
+      ],
+      "health_control": {
+        "result": "allow",
+        "addresses": [
+          "192.0.2.12"
+        ]
+      },
+      "matched": true
+    }
+  ]
+}

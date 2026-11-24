@@ -1,0 +1,24 @@
+{
+  "outcome": "PASS",
+  "service_account_automount": false,
+  "observations": {
+    "token-on": {
+      "service_account": "fixture",
+      "pod_automount": true,
+      "token_projection": true,
+      "default_mount": true,
+      "projection_at_default_mount": true,
+      "token_file_exists": true,
+      "image_id": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34"
+    },
+    "token-off": {
+      "service_account": "fixture",
+      "pod_automount": false,
+      "token_projection": false,
+      "default_mount": false,
+      "projection_at_default_mount": false,
+      "token_file_exists": false,
+      "image_id": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34"
+    }
+  }
+}

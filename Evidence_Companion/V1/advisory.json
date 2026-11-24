@@ -1,0 +1,15 @@
+{
+  "id": "V1-FICTION-001",
+  "classification": "TABLETOP / fictional",
+  "package": "fixture-reader",
+  "affected_version": "1.0",
+  "fixed_version": "1.1",
+  "scope": {
+    "serving/replica-1": "affected_app",
+    "serving/replica-2": "affected_app",
+    "monitor/collector-1": "unaffected_comparator"
+  },
+  "platform": "linux/arm64",
+  "owner": "Image owner (fictional role)",
+  "reviewer": "Vulnerability coordinator (fictional role)"
+}

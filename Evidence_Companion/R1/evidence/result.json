@@ -1,0 +1,129 @@
+{
+  "ended_utc": "2026-11-23T00:59:31.622135+00:00",
+  "exit_codes": {
+    "bad-copy": 41,
+    "interrupt": 42,
+    "reference": 0,
+    "resume": 0,
+    "verify": 0
+  },
+  "final_loss_decimal": 0.014625100778801962,
+  "final_loss_fraction": [
+    19440093396359344031760084371301221,
+    1329227995784915872903807060280344576
+  ],
+  "fixture_sha256": "29c6d26fd54bd9083506e45319059179741ef0a65430980e45162bf2ecedca52",
+  "initial_loss_fraction": [
+    21,
+    1
+  ],
+  "last_update_before_stop": 6,
+  "loaded_checkpoint_sha256": "a0c24c7c9c71e428a15dc9cd6c620fdfbc10caf16f289ea101027b54d223d69b",
+  "manifests_sha256": {
+    "paper-r1.json": "c39f35eb6a648f76600cad900490d2756ec74d5f2205e8462747ac9b250020f6",
+    "r1-bad-copy.json": "18139ea11d378c46b6270cfd534bc0d2691932bb695ae6dc5eb65b77a1c8defd",
+    "r1-fixtures.json": "82d816ec3757a7f0652a47f69ac13614478b5aac2e1a482678f2bb0eaf436da4",
+    "r1-interrupt.json": "8c47450931ac951a16685ddd8461e7f799d9fa243741c0d87993857707662837",
+    "r1-reference-hash.json": "33227066f97e7fbc40c03ca8a4b78e477b0f2e311e9116fc050252b75487bb46",
+    "r1-reference.json": "203045664db513b183ea87a44cb018bd0175e7daca01c23326bf38c8aabb5128",
+    "r1-resume.json": "f4a66ddd3586e6ec95c15e6aa2ad7b70cd1870af50bb6bff8bf05fc3151296ef",
+    "r1-state.json": "0deda81e01feba72bd2e3d1ad6c129c99bd4592c78c94b0714f0432ab5888520",
+    "r1-verify.json": "edccd41863a00809079a0415761270df60c0ab551f0282c9a0349c52b2f65046",
+    "training-sa.json": "436fdb63f797e16d88aaec64cd2ce0d839bb75b0ec7c92e020fe9a3df179ebcb"
+  },
+  "namespace": "created with Restricted/v1.36 labels",
+  "outcome": "pass",
+  "placements": [
+    {
+      "claim_read_only": false,
+      "exit_code": 0,
+      "image_id": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+      "node": "worker-1",
+      "pod_uid": "00000000-0000-4000-8000-000000000018",
+      "pv_name": "pvc-00000000-0000-4000-8000-000000000019",
+      "pvc_uid": "00000000-0000-4000-8000-000000000019",
+      "reason": "Completed",
+      "restarts": 0,
+      "stage": "reference"
+    },
+    {
+      "claim_read_only": false,
+      "exit_code": 42,
+      "image_id": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+      "node": "worker-1",
+      "pod_uid": "00000000-0000-4000-8000-000000000011",
+      "pv_name": "pvc-00000000-0000-4000-8000-000000000019",
+      "pvc_uid": "00000000-0000-4000-8000-000000000019",
+      "reason": "Error",
+      "restarts": 0,
+      "stage": "interrupt"
+    },
+    {
+      "claim_read_only": false,
+      "exit_code": 0,
+      "image_id": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+      "node": "worker-1",
+      "pod_uid": "00000000-0000-4000-8000-000000000013",
+      "pv_name": "pvc-00000000-0000-4000-8000-000000000019",
+      "pvc_uid": "00000000-0000-4000-8000-000000000019",
+      "reason": "Completed",
+      "restarts": 0,
+      "stage": "resume"
+    },
+    {
+      "claim_read_only": true,
+      "exit_code": 0,
+      "image_id": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+      "node": "worker-1",
+      "pod_uid": "00000000-0000-4000-8000-000000000005",
+      "pv_name": "pvc-00000000-0000-4000-8000-000000000019",
+      "pvc_uid": "00000000-0000-4000-8000-000000000019",
+      "reason": "Completed",
+      "restarts": 0,
+      "stage": "verify"
+    },
+    {
+      "claim_read_only": false,
+      "exit_code": 41,
+      "image_id": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+      "node": "worker-1",
+      "pod_uid": "00000000-0000-4000-8000-000000000015",
+      "pv_name": "pvc-00000000-0000-4000-8000-000000000019",
+      "pvc_uid": "00000000-0000-4000-8000-000000000019",
+      "reason": "Error",
+      "restarts": 0,
+      "stage": "bad-copy"
+    }
+  ],
+  "read_only_verifier": {
+    "event": "compared",
+    "matches": true,
+    "reference": {
+      "sha256": "8a35ac348478709898cea667c62787359f41057cbdd4786c0ae078a16065cf59",
+      "step": 12
+    },
+    "resumed": {
+      "sha256": "8a35ac348478709898cea667c62787359f41057cbdd4786c0ae078a16065cf59",
+      "step": 12
+    }
+  },
+  "reference_checkpoint_sha256": {
+    "4": "a0c24c7c9c71e428a15dc9cd6c620fdfbc10caf16f289ea101027b54d223d69b",
+    "8": "fef9f45579cf9628c8bbc455618312ef98a22939451f879df33de49ad3a46c38",
+    "12": "8a35ac348478709898cea667c62787359f41057cbdd4786c0ae078a16065cf59"
+  },
+  "replayed_step_count": 2,
+  "replayed_updates": [
+    5,
+    6
+  ],
+  "resumed_from_step": 4,
+  "run_id": "R1-GKE-20261123T005828Z",
+  "scope": "Kubernetes Job/Pod replacement on one worker with one surviving GKE Persistent Disk PVC",
+  "server_version": "v1.36.4-gke.2377000",
+  "started_utc": "2026-11-23T00:58:28.305216+00:00",
+  "storage": {
+    "provisioner": "pd.csi.storage.gke.io",
+    "volumeBindingMode": "WaitForFirstConsumer"
+  }
+}

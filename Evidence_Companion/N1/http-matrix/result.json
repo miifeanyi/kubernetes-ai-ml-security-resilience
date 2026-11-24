@@ -1,0 +1,59 @@
+{
+  "outcome": "PASS",
+  "stages": [
+    {
+      "stage": "baseline",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "default-deny",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "egress-only",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "ingress-only",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "both",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "remove-egress",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "restore-egress",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "remove-ingress",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "restore-ingress",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "untrusted-egress",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "untrusted-admitted",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "untrusted-blocked-again",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "restore-baseline",
+      "outcome": "PASS"
+    }
+  ],
+  "missing_listener_request_ids": [],
+  "scope": "HTTP Pod-IP and Service-IP network-policy comparisons"
+}

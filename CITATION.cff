@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Please cite the practitioner paper."
+title: "Kubernetes security and resilience evidence companion"
+authors:
+  - family-names: Ifeanyi
+    given-names: Michael
+preferred-citation:
+  type: report
+  title: "Security and Resilience for Kubernetes Infrastructure Supporting AI/ML Workloads: A Practitioner Framework with Bounded GKE Validation"
+  authors:
+    - family-names: Ifeanyi
+      given-names: Michael
+  year: 2026
+  doi: 10.5281/zenodo.24486098

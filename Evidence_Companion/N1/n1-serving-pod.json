@@ -1,0 +1,64 @@
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "inference",
+    "namespace": "n1-serving",
+    "labels": {
+      "role": "inference"
+    }
+  },
+  "spec": {
+    "serviceAccountName": "fixture",
+    "automountServiceAccountToken": false,
+    "restartPolicy": "Never",
+    "nodeSelector": {
+      "kubernetes.io/hostname": "worker-2"
+    },
+    "securityContext": {
+      "runAsNonRoot": true,
+      "runAsUser": 10001,
+      "seccompProfile": {
+        "type": "RuntimeDefault"
+      }
+    },
+    "containers": [
+      {
+        "name": "fixture",
+        "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+        "command": [
+          "python",
+          "-u",
+          "-c",
+          "\nfrom http.server import BaseHTTPRequestHandler, ThreadingHTTPServer\nimport json\nclass Handler(BaseHTTPRequestHandler):\n    def do_GET(self):\n        request_id = self.headers.get(\"X-Lab-Request\", \"\")\n        body = b\"lab-inference-ok\\n\"\n        self.send_response(200)\n        self.send_header(\"Content-Length\", str(len(body)))\n        self.send_header(\"X-Lab-Request\", request_id)\n        self.end_headers()\n        self.wfile.write(body)\n        if request_id:\n            print(json.dumps({\"request_id\": request_id}), flush=True)\n    def log_message(self, *args):\n        pass\nThreadingHTTPServer((\"0.0.0.0\", 8080), Handler).serve_forever()\n"
+        ],
+        "securityContext": {
+          "allowPrivilegeEscalation": false,
+          "readOnlyRootFilesystem": true,
+          "capabilities": {
+            "drop": [
+              "ALL"
+            ]
+          }
+        },
+        "resources": {
+          "requests": {
+            "cpu": "20m",
+            "memory": "32Mi"
+          },
+          "limits": {
+            "cpu": "250m",
+            "memory": "128Mi"
+          }
+        },
+        "readinessProbe": {
+          "httpGet": {
+            "path": "/",
+            "port": 8080
+          },
+          "periodSeconds": 2
+        }
+      }
+    ]
+  }
+}

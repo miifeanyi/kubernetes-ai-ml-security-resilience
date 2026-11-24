@@ -1,0 +1,17 @@
+{"event": "start", "fixture_digest": "29c6d26fd54bd9083506e45319059179741ef0a65430980e45162bf2ecedca52", "loss": [21, 1], "step": 0}
+{"event": "updated", "step": 1}
+{"event": "updated", "step": 2}
+{"event": "updated", "step": 3}
+{"event": "updated", "step": 4}
+{"event": "committed", "sha256": "a0c24c7c9c71e428a15dc9cd6c620fdfbc10caf16f289ea101027b54d223d69b", "step": 4}
+{"event": "updated", "step": 5}
+{"event": "updated", "step": 6}
+{"event": "updated", "step": 7}
+{"event": "updated", "step": 8}
+{"event": "committed", "sha256": "fef9f45579cf9628c8bbc455618312ef98a22939451f879df33de49ad3a46c38", "step": 8}
+{"event": "updated", "step": 9}
+{"event": "updated", "step": 10}
+{"event": "updated", "step": 11}
+{"event": "updated", "step": 12}
+{"event": "committed", "sha256": "8a35ac348478709898cea667c62787359f41057cbdd4786c0ae078a16065cf59", "step": 12}
+{"event": "finished", "loss": [19440093396359344031760084371301221, 1329227995784915872903807060280344576], "step": 12}

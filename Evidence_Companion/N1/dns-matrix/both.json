@@ -1,0 +1,68 @@
+{
+  "stage": "both",
+  "outcome": "PASS",
+  "observations": [
+    {
+      "transport": "UDP",
+      "expected": "allow",
+      "attempts": [
+        {
+          "result": "allow",
+          "addresses": [
+            "192.0.2.12"
+          ]
+        },
+        {
+          "result": "allow",
+          "addresses": [
+            "192.0.2.12"
+          ]
+        },
+        {
+          "result": "allow",
+          "addresses": [
+            "192.0.2.12"
+          ]
+        }
+      ],
+      "health_control": {
+        "result": "allow",
+        "addresses": [
+          "192.0.2.12"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "transport": "TCP",
+      "expected": "allow",
+      "attempts": [
+        {
+          "result": "allow",
+          "addresses": [
+            "192.0.2.12"
+          ]
+        },
+        {
+          "result": "allow",
+          "addresses": [
+            "192.0.2.12"
+          ]
+        },
+        {
+          "result": "allow",
+          "addresses": [
+            "192.0.2.12"
+          ]
+        }
+      ],
+      "health_control": {
+        "result": "allow",
+        "addresses": [
+          "192.0.2.12"
+        ]
+      },
+      "matched": true
+    }
+  ]
+}

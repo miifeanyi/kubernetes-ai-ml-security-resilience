@@ -1,0 +1,56 @@
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "client",
+    "namespace": "n1-untrusted",
+    "labels": {
+      "role": "frontend"
+    }
+  },
+  "spec": {
+    "serviceAccountName": "fixture",
+    "automountServiceAccountToken": false,
+    "restartPolicy": "Never",
+    "nodeSelector": {
+      "kubernetes.io/hostname": "worker-1"
+    },
+    "securityContext": {
+      "runAsNonRoot": true,
+      "runAsUser": 10001,
+      "seccompProfile": {
+        "type": "RuntimeDefault"
+      }
+    },
+    "containers": [
+      {
+        "name": "fixture",
+        "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+        "command": [
+          "python",
+          "-c",
+          "import time; time.sleep(21600)"
+        ],
+        "securityContext": {
+          "allowPrivilegeEscalation": false,
+          "readOnlyRootFilesystem": true,
+          "capabilities": {
+            "drop": [
+              "ALL"
+            ]
+          }
+        },
+        "resources": {
+          "requests": {
+            "cpu": "20m",
+            "memory": "32Mi"
+          },
+          "limits": {
+            "cpu": "250m",
+            "memory": "128Mi"
+          }
+        }
+      }
+    ]
+  }
+}

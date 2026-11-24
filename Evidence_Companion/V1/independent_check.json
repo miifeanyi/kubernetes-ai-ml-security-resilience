@@ -1,0 +1,42 @@
+{
+  "method": "Independent SQLite join on the platform and the deployed digest",
+  "query": "SELECT d.snapshot, COUNT(*) AS matched, SUM(b.artifact='A') AS affected, SUM(b.artifact='B') AS fixed, SUM(b.artifact='C') AS unaffected FROM deployments d JOIN builds b ON d.platform=b.platform AND d.deployed_platform_digest=b.platform_digest GROUP BY d.snapshot ORDER BY d.snapshot",
+  "columns": [
+    "snapshot",
+    "matched",
+    "affected",
+    "fixed",
+    "unaffected"
+  ],
+  "rows": [
+    [
+      "before",
+      3,
+      2,
+      0,
+      1
+    ],
+    [
+      "complete_rollout",
+      3,
+      0,
+      2,
+      1
+    ],
+    [
+      "partial_rollout",
+      3,
+      1,
+      1,
+      1
+    ],
+    [
+      "tag_only",
+      3,
+      2,
+      0,
+      1
+    ]
+  ],
+  "outcome": "PASS"
+}

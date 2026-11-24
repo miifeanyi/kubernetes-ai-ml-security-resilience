@@ -1,0 +1,468 @@
+[
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "storageclass",
+      "standard-rwo",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "version",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "get",
+      "node",
+      "worker-1",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "get",
+      "namespace",
+      "paper-r1",
+      "--ignore-not-found",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--dry-run=server",
+      "--validate=strict",
+      "-f",
+      "manifests/paper-r1.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--validate=strict",
+      "-f",
+      "manifests/paper-r1.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--dry-run=server",
+      "--validate=strict",
+      "-f",
+      "manifests/training-sa.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--validate=strict",
+      "-f",
+      "manifests/training-sa.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--dry-run=server",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-fixtures.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-fixtures.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--dry-run=server",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-state.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-state.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--dry-run=server",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-reference.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-reference.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "wait",
+      "job/r1-reference",
+      "--for=condition=complete",
+      "--timeout=720s"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "pods",
+      "-l",
+      "job-name=r1-reference",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "pvc",
+      "r1-state",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "logs",
+      "pod/r1-reference-th2gh",
+      "-c",
+      "fixture"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--dry-run=server",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-interrupt.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-interrupt.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "wait",
+      "job/r1-interrupt",
+      "--for=condition=failed",
+      "--timeout=720s"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "pods",
+      "-l",
+      "job-name=r1-interrupt",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "pvc",
+      "r1-state",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "logs",
+      "pod/r1-interrupt-hssbn",
+      "-c",
+      "fixture"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--dry-run=server",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-reference-hash.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-reference-hash.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--dry-run=server",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-resume.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-resume.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "wait",
+      "job/r1-resume",
+      "--for=condition=complete",
+      "--timeout=720s"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "pods",
+      "-l",
+      "job-name=r1-resume",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "pvc",
+      "r1-state",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "logs",
+      "pod/r1-resume-9nt2z",
+      "-c",
+      "fixture"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--dry-run=server",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-verify.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-verify.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "wait",
+      "job/r1-verify",
+      "--for=condition=complete",
+      "--timeout=720s"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "pods",
+      "-l",
+      "job-name=r1-verify",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "pvc",
+      "r1-state",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "logs",
+      "pod/r1-verify-g66v8",
+      "-c",
+      "fixture"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--dry-run=server",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-bad-copy.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "create",
+      "--validate=strict",
+      "-f",
+      "manifests/r1-bad-copy.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "wait",
+      "job/r1-bad-copy",
+      "--for=condition=failed",
+      "--timeout=720s"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "pods",
+      "-l",
+      "job-name=r1-bad-copy",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "get",
+      "pvc",
+      "r1-state",
+      "-o",
+      "json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "args": [
+      "-n",
+      "paper-r1",
+      "logs",
+      "pod/r1-bad-copy-s68gd",
+      "-c",
+      "fixture"
+    ],
+    "exit_code": 0
+  }
+]

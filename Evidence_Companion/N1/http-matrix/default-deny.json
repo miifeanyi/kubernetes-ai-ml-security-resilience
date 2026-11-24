@@ -1,0 +1,92 @@
+{
+  "stage": "default-deny",
+  "started_utc": "2026-11-23T00:26:27.143299+00:00",
+  "cases": [
+    {
+      "source": "n1-edge",
+      "target": "pod_ip",
+      "expected": "timeout",
+      "matched": true,
+      "attempts": [
+        {
+          "result": "timeout",
+          "request_id": "789b574edf0f4e32aaa73f5c525322af"
+        },
+        {
+          "result": "timeout",
+          "request_id": "1dbddea77bad4530858896b97b1f54a6"
+        },
+        {
+          "result": "timeout",
+          "request_id": "f0e36e7fcde94cd69a71dccaa4a4ae88"
+        }
+      ]
+    },
+    {
+      "source": "n1-edge",
+      "target": "service_ip",
+      "expected": "timeout",
+      "matched": true,
+      "attempts": [
+        {
+          "result": "timeout",
+          "request_id": "093cdfadbc804f18aa486b7fd017f6d9"
+        },
+        {
+          "result": "timeout",
+          "request_id": "ebf13e42a8a3499e9c271ef00d6b6f9d"
+        },
+        {
+          "result": "timeout",
+          "request_id": "37bd140dbe9c48068792228098bddfc8"
+        }
+      ]
+    },
+    {
+      "source": "n1-untrusted",
+      "target": "pod_ip",
+      "expected": "timeout",
+      "matched": true,
+      "attempts": [
+        {
+          "result": "timeout",
+          "request_id": "f6f06eefe09c4973b14ed8654925c4e4"
+        },
+        {
+          "result": "timeout",
+          "request_id": "5deb5458e4824724b57f476399a03128"
+        },
+        {
+          "result": "timeout",
+          "request_id": "bee5630b52174c18923d4f8496460a60"
+        }
+      ]
+    },
+    {
+      "source": "n1-untrusted",
+      "target": "service_ip",
+      "expected": "timeout",
+      "matched": true,
+      "attempts": [
+        {
+          "result": "timeout",
+          "request_id": "3f19d8783ae248eba69bb6e0e9b8b314"
+        },
+        {
+          "result": "timeout",
+          "request_id": "7a4255c370c148709c5a442736c076cc"
+        },
+        {
+          "result": "timeout",
+          "request_id": "361d1d40907246a2ba5acb31cfb177e2"
+        }
+      ]
+    }
+  ],
+  "outcome": "PASS",
+  "listener_control": {
+    "result": "allow",
+    "request_id": "2be6630a18e248c5894128bca77d7eb9"
+  },
+  "topology_stable": true
+}

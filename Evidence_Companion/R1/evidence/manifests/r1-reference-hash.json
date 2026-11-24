@@ -1,0 +1,12 @@
+{
+  "apiVersion": "v1",
+  "data": {
+    "expected-h4": "a0c24c7c9c71e428a15dc9cd6c620fdfbc10caf16f289ea101027b54d223d69b"
+  },
+  "immutable": true,
+  "kind": "ConfigMap",
+  "metadata": {
+    "name": "r1-reference-hash",
+    "namespace": "paper-r1"
+  }
+}

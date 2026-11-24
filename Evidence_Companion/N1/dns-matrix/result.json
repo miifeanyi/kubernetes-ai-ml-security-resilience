@@ -1,0 +1,33 @@
+{
+  "outcome": "PASS",
+  "stages": [
+    {
+      "stage": "baseline",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "deny",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "udp-only",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "tcp-only",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "both",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "remove-allow",
+      "outcome": "PASS"
+    },
+    {
+      "stage": "restore-baseline",
+      "outcome": "PASS"
+    }
+  ]
+}

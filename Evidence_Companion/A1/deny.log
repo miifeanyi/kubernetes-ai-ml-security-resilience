@@ -1,0 +1,1 @@
+Error from server (Forbidden): error when creating "A1/deny.json": pods "admission-pair" is forbidden: violates PodSecurity "restricted:v1.36": allowPrivilegeEscalation != false (container "fixture" must set securityContext.allowPrivilegeEscalation=false)

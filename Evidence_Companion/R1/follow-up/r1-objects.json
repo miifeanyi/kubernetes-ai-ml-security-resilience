@@ -1,0 +1,2043 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:59:22Z",
+                "generateName": "r1-bad-copy-",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000014",
+                    "batch.kubernetes.io/job-name": "r1-bad-copy",
+                    "controller-uid": "00000000-0000-4000-8000-000000000014",
+                    "job-name": "r1-bad-copy",
+                    "topology.kubernetes.io/region": "us-central1",
+                    "topology.kubernetes.io/zone": "us-central1-a"
+                },
+                "name": "r1-bad-copy-s68gd",
+                "namespace": "paper-r1",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "r1-bad-copy",
+                        "uid": "00000000-0000-4000-8000-000000000014"
+                    }
+                ],
+                "resourceVersion": "1795395570296143023",
+                "uid": "00000000-0000-4000-8000-000000000015"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-B",
+                            "/lab/train.py",
+                            "resume",
+                            "--dir",
+                            "/state/empty-negative",
+                            "--steps",
+                            "12",
+                            "--save-every",
+                            "4"
+                        ],
+                        "env": [
+                            {
+                                "name": "EXPECTED_H4",
+                                "valueFrom": {
+                                    "configMapKeyRef": {
+                                        "key": "expected-h4",
+                                        "name": "r1-reference-hash"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "fixture",
+                        "resources": {},
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/lab",
+                                "name": "code",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/state",
+                                "name": "state"
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "worker-1",
+                "nodeSelector": {
+                    "kubernetes.io/hostname": "worker-1"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 10001,
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "training-sa",
+                "serviceAccountName": "training-sa",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "r1-fixtures"
+                        },
+                        "name": "code"
+                    },
+                    {
+                        "name": "state",
+                        "persistentVolumeClaim": {
+                            "claimName": "r1-state"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:29Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:22Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:28Z",
+                        "observedGeneration": 1,
+                        "reason": "PodFailed",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:28Z",
+                        "observedGeneration": 1,
+                        "reason": "PodFailed",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:22Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "containerd://5e249f9de5c877a6ece13188bd0894025b439ae3ca34dab86d93d650a0b9619a",
+                        "image": "docker.io/library/python:3.13.9-slim-bookworm",
+                        "imageID": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                        "lastState": {},
+                        "name": "fixture",
+                        "ready": false,
+                        "resources": {},
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://5e249f9de5c877a6ece13188bd0894025b439ae3ca34dab86d93d650a0b9619a",
+                                "exitCode": 41,
+                                "finishedAt": "2026-11-23T00:59:27Z",
+                                "reason": "Error",
+                                "startedAt": "2026-11-23T00:59:27Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 10001,
+                                "supplementalGroups": [
+                                    10001
+                                ],
+                                "uid": 10001
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/lab",
+                                "name": "code",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/state",
+                                "name": "state"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.0.2.1",
+                "hostIPs": [
+                    {
+                        "ip": "192.0.2.1"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Failed",
+                "podIP": "192.0.2.6",
+                "podIPs": [
+                    {
+                        "ip": "192.0.2.6"
+                    }
+                ],
+                "qosClass": "BestEffort",
+                "resources": {},
+                "startTime": "2026-11-23T00:59:22Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:58:52Z",
+                "generateName": "r1-interrupt-",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000006",
+                    "batch.kubernetes.io/job-name": "r1-interrupt",
+                    "controller-uid": "00000000-0000-4000-8000-000000000006",
+                    "job-name": "r1-interrupt",
+                    "topology.kubernetes.io/region": "us-central1",
+                    "topology.kubernetes.io/zone": "us-central1-a"
+                },
+                "name": "r1-interrupt-hssbn",
+                "namespace": "paper-r1",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "r1-interrupt",
+                        "uid": "00000000-0000-4000-8000-000000000006"
+                    }
+                ],
+                "resourceVersion": "1795395539582191013",
+                "uid": "00000000-0000-4000-8000-000000000011"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-B",
+                            "/lab/train.py",
+                            "fresh",
+                            "--dir",
+                            "/state/interrupted",
+                            "--exit-after-update",
+                            "6",
+                            "--steps",
+                            "12",
+                            "--save-every",
+                            "4"
+                        ],
+                        "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "fixture",
+                        "resources": {},
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/lab",
+                                "name": "code",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/state",
+                                "name": "state"
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "worker-1",
+                "nodeSelector": {
+                    "kubernetes.io/hostname": "worker-1"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 10001,
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "training-sa",
+                "serviceAccountName": "training-sa",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "r1-fixtures"
+                        },
+                        "name": "code"
+                    },
+                    {
+                        "name": "state",
+                        "persistentVolumeClaim": {
+                            "claimName": "r1-state"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:58:58Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:58:52Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:58:57Z",
+                        "observedGeneration": 1,
+                        "reason": "PodFailed",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:58:57Z",
+                        "observedGeneration": 1,
+                        "reason": "PodFailed",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:58:52Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "containerd://70263e9331d0d19cf7e9878b8939282f362989f5ac6bcffa96113a67a5ab5fc3",
+                        "image": "docker.io/library/python:3.13.9-slim-bookworm",
+                        "imageID": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                        "lastState": {},
+                        "name": "fixture",
+                        "ready": false,
+                        "resources": {},
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://70263e9331d0d19cf7e9878b8939282f362989f5ac6bcffa96113a67a5ab5fc3",
+                                "exitCode": 42,
+                                "finishedAt": "2026-11-23T00:58:56Z",
+                                "reason": "Error",
+                                "startedAt": "2026-11-23T00:58:56Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 10001,
+                                "supplementalGroups": [
+                                    10001
+                                ],
+                                "uid": 10001
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/lab",
+                                "name": "code",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/state",
+                                "name": "state"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.0.2.1",
+                "hostIPs": [
+                    {
+                        "ip": "192.0.2.1"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Failed",
+                "podIP": "192.0.2.3",
+                "podIPs": [
+                    {
+                        "ip": "192.0.2.3"
+                    }
+                ],
+                "qosClass": "BestEffort",
+                "resources": {},
+                "startTime": "2026-11-23T00:58:52Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:58:35Z",
+                "generateName": "r1-reference-",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000022",
+                    "batch.kubernetes.io/job-name": "r1-reference",
+                    "controller-uid": "00000000-0000-4000-8000-000000000022",
+                    "job-name": "r1-reference",
+                    "topology.kubernetes.io/region": "us-central1",
+                    "topology.kubernetes.io/zone": "us-central1-a"
+                },
+                "name": "r1-reference-th2gh",
+                "namespace": "paper-r1",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "r1-reference",
+                        "uid": "00000000-0000-4000-8000-000000000022"
+                    }
+                ],
+                "resourceVersion": "1795395529986367007",
+                "uid": "00000000-0000-4000-8000-000000000018"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-B",
+                            "/lab/train.py",
+                            "fresh",
+                            "--dir",
+                            "/state/reference",
+                            "--steps",
+                            "12",
+                            "--save-every",
+                            "4"
+                        ],
+                        "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "fixture",
+                        "resources": {},
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/lab",
+                                "name": "code",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/state",
+                                "name": "state"
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "worker-1",
+                "nodeSelector": {
+                    "kubernetes.io/hostname": "worker-1"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 10001,
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "training-sa",
+                "serviceAccountName": "training-sa",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "r1-fixtures"
+                        },
+                        "name": "code"
+                    },
+                    {
+                        "name": "state",
+                        "persistentVolumeClaim": {
+                            "claimName": "r1-state"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:58:49Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:58:37Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:58:48Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:58:48Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:58:37Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "containerd://7594a8b573e4f7e7266879744d173848607fe2c86e81624d31e4cbfcdd56e903",
+                        "image": "docker.io/library/python:3.13.9-slim-bookworm",
+                        "imageID": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                        "lastState": {},
+                        "name": "fixture",
+                        "ready": false,
+                        "resources": {},
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://7594a8b573e4f7e7266879744d173848607fe2c86e81624d31e4cbfcdd56e903",
+                                "exitCode": 0,
+                                "finishedAt": "2026-11-23T00:58:47Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-11-23T00:58:47Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 10001,
+                                "supplementalGroups": [
+                                    10001
+                                ],
+                                "uid": 10001
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/lab",
+                                "name": "code",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/state",
+                                "name": "state"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.0.2.1",
+                "hostIPs": [
+                    {
+                        "ip": "192.0.2.1"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "192.0.2.2",
+                "podIPs": [
+                    {
+                        "ip": "192.0.2.2"
+                    }
+                ],
+                "qosClass": "BestEffort",
+                "resources": {},
+                "startTime": "2026-11-23T00:58:37Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:59:02Z",
+                "generateName": "r1-resume-",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000008",
+                    "batch.kubernetes.io/job-name": "r1-resume",
+                    "controller-uid": "00000000-0000-4000-8000-000000000008",
+                    "job-name": "r1-resume",
+                    "topology.kubernetes.io/region": "us-central1",
+                    "topology.kubernetes.io/zone": "us-central1-a"
+                },
+                "name": "r1-resume-9nt2z",
+                "namespace": "paper-r1",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "r1-resume",
+                        "uid": "00000000-0000-4000-8000-000000000008"
+                    }
+                ],
+                "resourceVersion": "1795395549871151019",
+                "uid": "00000000-0000-4000-8000-000000000013"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-B",
+                            "/lab/train.py",
+                            "resume",
+                            "--dir",
+                            "/state/interrupted",
+                            "--steps",
+                            "12",
+                            "--save-every",
+                            "4"
+                        ],
+                        "env": [
+                            {
+                                "name": "EXPECTED_H4",
+                                "valueFrom": {
+                                    "configMapKeyRef": {
+                                        "key": "expected-h4",
+                                        "name": "r1-reference-hash"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "fixture",
+                        "resources": {},
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/lab",
+                                "name": "code",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/state",
+                                "name": "state"
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "worker-1",
+                "nodeSelector": {
+                    "kubernetes.io/hostname": "worker-1"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 10001,
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "training-sa",
+                "serviceAccountName": "training-sa",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "r1-fixtures"
+                        },
+                        "name": "code"
+                    },
+                    {
+                        "name": "state",
+                        "persistentVolumeClaim": {
+                            "claimName": "r1-state"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:08Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:02Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:07Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:07Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:02Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "containerd://506a9a655bf5e42b3c2a6a2e26a06d42e33f7de497ec70bf25e59c1cfa9f08ca",
+                        "image": "docker.io/library/python:3.13.9-slim-bookworm",
+                        "imageID": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                        "lastState": {},
+                        "name": "fixture",
+                        "ready": false,
+                        "resources": {},
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://506a9a655bf5e42b3c2a6a2e26a06d42e33f7de497ec70bf25e59c1cfa9f08ca",
+                                "exitCode": 0,
+                                "finishedAt": "2026-11-23T00:59:07Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-11-23T00:59:06Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 10001,
+                                "supplementalGroups": [
+                                    10001
+                                ],
+                                "uid": 10001
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/lab",
+                                "name": "code",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/state",
+                                "name": "state"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.0.2.1",
+                "hostIPs": [
+                    {
+                        "ip": "192.0.2.1"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "192.0.2.4",
+                "podIPs": [
+                    {
+                        "ip": "192.0.2.4"
+                    }
+                ],
+                "qosClass": "BestEffort",
+                "resources": {},
+                "startTime": "2026-11-23T00:59:02Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:59:12Z",
+                "generateName": "r1-verify-",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000012",
+                    "batch.kubernetes.io/job-name": "r1-verify",
+                    "controller-uid": "00000000-0000-4000-8000-000000000012",
+                    "job-name": "r1-verify",
+                    "topology.kubernetes.io/region": "us-central1",
+                    "topology.kubernetes.io/zone": "us-central1-a"
+                },
+                "name": "r1-verify-g66v8",
+                "namespace": "paper-r1",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "r1-verify",
+                        "uid": "00000000-0000-4000-8000-000000000012"
+                    }
+                ],
+                "resourceVersion": "1795395559900399017",
+                "uid": "00000000-0000-4000-8000-000000000005"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-B",
+                            "/lab/verify.py",
+                            "/state/reference/step-0012.json",
+                            "/state/interrupted/step-0012.json"
+                        ],
+                        "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "fixture",
+                        "resources": {},
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/lab",
+                                "name": "code",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/state",
+                                "name": "state",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "worker-1",
+                "nodeSelector": {
+                    "kubernetes.io/hostname": "worker-1"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 10001,
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "training-sa",
+                "serviceAccountName": "training-sa",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "r1-fixtures"
+                        },
+                        "name": "code"
+                    },
+                    {
+                        "name": "state",
+                        "persistentVolumeClaim": {
+                            "claimName": "r1-state",
+                            "readOnly": true
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:18Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:12Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:17Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:17Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-23T00:59:12Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "containerd://337799e803940074b6997a07b5ac606759219f3ffeb7e08094c15bb284648779",
+                        "image": "docker.io/library/python:3.13.9-slim-bookworm",
+                        "imageID": "docker.io/library/python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                        "lastState": {},
+                        "name": "fixture",
+                        "ready": false,
+                        "resources": {},
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://337799e803940074b6997a07b5ac606759219f3ffeb7e08094c15bb284648779",
+                                "exitCode": 0,
+                                "finishedAt": "2026-11-23T00:59:17Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-11-23T00:59:16Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 10001,
+                                "supplementalGroups": [
+                                    10001
+                                ],
+                                "uid": 10001
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/lab",
+                                "name": "code",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/state",
+                                "name": "state",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.0.2.1",
+                "hostIPs": [
+                    {
+                        "ip": "192.0.2.1"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "192.0.2.5",
+                "podIPs": [
+                    {
+                        "ip": "192.0.2.5"
+                    }
+                ],
+                "qosClass": "BestEffort",
+                "resources": {},
+                "startTime": "2026-11-23T00:59:12Z"
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:59:22Z",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000014",
+                    "batch.kubernetes.io/job-name": "r1-bad-copy",
+                    "controller-uid": "00000000-0000-4000-8000-000000000014",
+                    "job-name": "r1-bad-copy"
+                },
+                "name": "r1-bad-copy",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395570316351000",
+                "uid": "00000000-0000-4000-8000-000000000014"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 600,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000014"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000014",
+                            "batch.kubernetes.io/job-name": "r1-bad-copy",
+                            "controller-uid": "00000000-0000-4000-8000-000000000014",
+                            "job-name": "r1-bad-copy"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-B",
+                                    "/lab/train.py",
+                                    "resume",
+                                    "--dir",
+                                    "/state/empty-negative",
+                                    "--steps",
+                                    "12",
+                                    "--save-every",
+                                    "4"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "EXPECTED_H4",
+                                        "valueFrom": {
+                                            "configMapKeyRef": {
+                                                "key": "expected-h4",
+                                                "name": "r1-reference-hash"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "fixture",
+                                "resources": {},
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    },
+                                    "readOnlyRootFilesystem": true
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/lab",
+                                        "name": "code",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/state",
+                                        "name": "state"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "nodeSelector": {
+                            "kubernetes.io/hostname": "worker-1"
+                        },
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 10001,
+                            "runAsGroup": 10001,
+                            "runAsNonRoot": true,
+                            "runAsUser": 10001,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "serviceAccount": "training-sa",
+                        "serviceAccountName": "training-sa",
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "configMap": {
+                                    "defaultMode": 420,
+                                    "name": "r1-fixtures"
+                                },
+                                "name": "code"
+                            },
+                            {
+                                "name": "state",
+                                "persistentVolumeClaim": {
+                                    "claimName": "r1-state"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-11-23T00:59:30Z",
+                        "lastTransitionTime": "2026-11-23T00:59:30Z",
+                        "message": "Job has reached the specified backoff limit",
+                        "reason": "BackoffLimitExceeded",
+                        "status": "True",
+                        "type": "FailureTarget"
+                    },
+                    {
+                        "lastProbeTime": "2026-11-23T00:59:30Z",
+                        "lastTransitionTime": "2026-11-23T00:59:30Z",
+                        "message": "Job has reached the specified backoff limit",
+                        "reason": "BackoffLimitExceeded",
+                        "status": "True",
+                        "type": "Failed"
+                    }
+                ],
+                "failed": 1,
+                "ready": 0,
+                "startTime": "2026-11-23T00:59:22Z",
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:58:52Z",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000006",
+                    "batch.kubernetes.io/job-name": "r1-interrupt",
+                    "controller-uid": "00000000-0000-4000-8000-000000000006",
+                    "job-name": "r1-interrupt"
+                },
+                "name": "r1-interrupt",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395539599887022",
+                "uid": "00000000-0000-4000-8000-000000000006"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 600,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000006"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000006",
+                            "batch.kubernetes.io/job-name": "r1-interrupt",
+                            "controller-uid": "00000000-0000-4000-8000-000000000006",
+                            "job-name": "r1-interrupt"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-B",
+                                    "/lab/train.py",
+                                    "fresh",
+                                    "--dir",
+                                    "/state/interrupted",
+                                    "--exit-after-update",
+                                    "6",
+                                    "--steps",
+                                    "12",
+                                    "--save-every",
+                                    "4"
+                                ],
+                                "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "fixture",
+                                "resources": {},
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    },
+                                    "readOnlyRootFilesystem": true
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/lab",
+                                        "name": "code",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/state",
+                                        "name": "state"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "nodeSelector": {
+                            "kubernetes.io/hostname": "worker-1"
+                        },
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 10001,
+                            "runAsGroup": 10001,
+                            "runAsNonRoot": true,
+                            "runAsUser": 10001,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "serviceAccount": "training-sa",
+                        "serviceAccountName": "training-sa",
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "configMap": {
+                                    "defaultMode": 420,
+                                    "name": "r1-fixtures"
+                                },
+                                "name": "code"
+                            },
+                            {
+                                "name": "state",
+                                "persistentVolumeClaim": {
+                                    "claimName": "r1-state"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-11-23T00:58:59Z",
+                        "lastTransitionTime": "2026-11-23T00:58:59Z",
+                        "message": "Job has reached the specified backoff limit",
+                        "reason": "BackoffLimitExceeded",
+                        "status": "True",
+                        "type": "FailureTarget"
+                    },
+                    {
+                        "lastProbeTime": "2026-11-23T00:58:59Z",
+                        "lastTransitionTime": "2026-11-23T00:58:59Z",
+                        "message": "Job has reached the specified backoff limit",
+                        "reason": "BackoffLimitExceeded",
+                        "status": "True",
+                        "type": "Failed"
+                    }
+                ],
+                "failed": 1,
+                "ready": 0,
+                "startTime": "2026-11-23T00:58:52Z",
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:58:35Z",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000022",
+                    "batch.kubernetes.io/job-name": "r1-reference",
+                    "controller-uid": "00000000-0000-4000-8000-000000000022",
+                    "job-name": "r1-reference"
+                },
+                "name": "r1-reference",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395530005583013",
+                "uid": "00000000-0000-4000-8000-000000000022"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 600,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000022"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000022",
+                            "batch.kubernetes.io/job-name": "r1-reference",
+                            "controller-uid": "00000000-0000-4000-8000-000000000022",
+                            "job-name": "r1-reference"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-B",
+                                    "/lab/train.py",
+                                    "fresh",
+                                    "--dir",
+                                    "/state/reference",
+                                    "--steps",
+                                    "12",
+                                    "--save-every",
+                                    "4"
+                                ],
+                                "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "fixture",
+                                "resources": {},
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    },
+                                    "readOnlyRootFilesystem": true
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/lab",
+                                        "name": "code",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/state",
+                                        "name": "state"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "nodeSelector": {
+                            "kubernetes.io/hostname": "worker-1"
+                        },
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 10001,
+                            "runAsGroup": 10001,
+                            "runAsNonRoot": true,
+                            "runAsUser": 10001,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "serviceAccount": "training-sa",
+                        "serviceAccountName": "training-sa",
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "configMap": {
+                                    "defaultMode": 420,
+                                    "name": "r1-fixtures"
+                                },
+                                "name": "code"
+                            },
+                            {
+                                "name": "state",
+                                "persistentVolumeClaim": {
+                                    "claimName": "r1-state"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-11-23T00:58:49Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-11-23T00:58:49Z",
+                        "lastTransitionTime": "2026-11-23T00:58:49Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-11-23T00:58:49Z",
+                        "lastTransitionTime": "2026-11-23T00:58:49Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-11-23T00:58:35Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:59:02Z",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000008",
+                    "batch.kubernetes.io/job-name": "r1-resume",
+                    "controller-uid": "00000000-0000-4000-8000-000000000008",
+                    "job-name": "r1-resume"
+                },
+                "name": "r1-resume",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395549912943006",
+                "uid": "00000000-0000-4000-8000-000000000008"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 600,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000008"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000008",
+                            "batch.kubernetes.io/job-name": "r1-resume",
+                            "controller-uid": "00000000-0000-4000-8000-000000000008",
+                            "job-name": "r1-resume"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-B",
+                                    "/lab/train.py",
+                                    "resume",
+                                    "--dir",
+                                    "/state/interrupted",
+                                    "--steps",
+                                    "12",
+                                    "--save-every",
+                                    "4"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "EXPECTED_H4",
+                                        "valueFrom": {
+                                            "configMapKeyRef": {
+                                                "key": "expected-h4",
+                                                "name": "r1-reference-hash"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "fixture",
+                                "resources": {},
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    },
+                                    "readOnlyRootFilesystem": true
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/lab",
+                                        "name": "code",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/state",
+                                        "name": "state"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "nodeSelector": {
+                            "kubernetes.io/hostname": "worker-1"
+                        },
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 10001,
+                            "runAsGroup": 10001,
+                            "runAsNonRoot": true,
+                            "runAsUser": 10001,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "serviceAccount": "training-sa",
+                        "serviceAccountName": "training-sa",
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "configMap": {
+                                    "defaultMode": 420,
+                                    "name": "r1-fixtures"
+                                },
+                                "name": "code"
+                            },
+                            {
+                                "name": "state",
+                                "persistentVolumeClaim": {
+                                    "claimName": "r1-state"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-11-23T00:59:09Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-11-23T00:59:09Z",
+                        "lastTransitionTime": "2026-11-23T00:59:09Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-11-23T00:59:09Z",
+                        "lastTransitionTime": "2026-11-23T00:59:09Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-11-23T00:59:02Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:59:12Z",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000012",
+                    "batch.kubernetes.io/job-name": "r1-verify",
+                    "controller-uid": "00000000-0000-4000-8000-000000000012",
+                    "job-name": "r1-verify"
+                },
+                "name": "r1-verify",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395559918527024",
+                "uid": "00000000-0000-4000-8000-000000000012"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 600,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000012"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "batch.kubernetes.io/controller-uid": "00000000-0000-4000-8000-000000000012",
+                            "batch.kubernetes.io/job-name": "r1-verify",
+                            "controller-uid": "00000000-0000-4000-8000-000000000012",
+                            "job-name": "r1-verify"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-B",
+                                    "/lab/verify.py",
+                                    "/state/reference/step-0012.json",
+                                    "/state/interrupted/step-0012.json"
+                                ],
+                                "image": "python@sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "fixture",
+                                "resources": {},
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    },
+                                    "readOnlyRootFilesystem": true
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/lab",
+                                        "name": "code",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/state",
+                                        "name": "state",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "nodeSelector": {
+                            "kubernetes.io/hostname": "worker-1"
+                        },
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 10001,
+                            "runAsGroup": 10001,
+                            "runAsNonRoot": true,
+                            "runAsUser": 10001,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "serviceAccount": "training-sa",
+                        "serviceAccountName": "training-sa",
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "configMap": {
+                                    "defaultMode": 420,
+                                    "name": "r1-fixtures"
+                                },
+                                "name": "code"
+                            },
+                            {
+                                "name": "state",
+                                "persistentVolumeClaim": {
+                                    "claimName": "r1-state",
+                                    "readOnly": true
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-11-23T00:59:19Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-11-23T00:59:19Z",
+                        "lastTransitionTime": "2026-11-23T00:59:19Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-11-23T00:59:19Z",
+                        "lastTransitionTime": "2026-11-23T00:59:19Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-11-23T00:59:12Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "pd.csi.storage.gke.io",
+                    "volume.kubernetes.io/selected-node": "worker-1",
+                    "volume.kubernetes.io/storage-provisioner": "pd.csi.storage.gke.io"
+                },
+                "creationTimestamp": "2026-11-23T00:58:34Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "name": "r1-state",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395517002463013",
+                "uid": "00000000-0000-4000-8000-000000000019"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "standard-rwo",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-00000000-0000-4000-8000-000000000019"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "data": {
+                "ca.crt": "[CLUSTER_CA_OMITTED]\n"
+            },
+            "kind": "ConfigMap",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/description": "Contains a CA bundle that can be used to verify the kube-apiserver when using internal endpoints such as the internal service IP or kubernetes.default.svc. No other usage is guaranteed across distributions of Kubernetes clusters."
+                },
+                "creationTimestamp": "2026-11-23T00:58:31Z",
+                "name": "kube-root-ca.crt",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395511140399019",
+                "uid": "00000000-0000-4000-8000-000000000007"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "data": {
+                "train.py": "\"\"\"Fixed full-batch linear regression using exact rational arithmetic.\"\"\"\nimport argparse\nimport hashlib\nimport json\nimport math\nimport os\nimport tempfile\nfrom fractions import Fraction\nfrom pathlib import Path\n\nDATA = [(x, 2 * x + 1) for x in range(4)]\nRATE = Fraction(1, 32)\n# The dataset and update code both live in this file.\nFIXTURE_DIGEST = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()\n\n\ndef emit(event, **fields):\n    print(json.dumps({\"event\": event, **fields}, sort_keys=True), flush=True)\n\n\ndef encode(record):\n    return json.dumps(record, sort_keys=True, separators=(\",\", \":\")).encode(\"utf-8\")\n\n\ndef pair(value):\n    return [value.numerator, value.denominator]\n\n\ndef loss(slope, intercept):\n    return sum((slope * x + intercept - y) ** 2 for x, y in DATA) / len(DATA)\n\n\ndef update(slope, intercept):\n    errors = [(x, slope * x + intercept - y) for x, y in DATA]\n    scale = RATE * 2 / len(DATA)\n    return (slope - scale * sum(x * err for x, err in errors),\n            intercept - scale * sum(err for _, err in errors))\n\n\ndef commit(directory, step, slope, intercept):\n    payload = encode({\"schema_version\": 1, \"fixture_digest\": FIXTURE_DIGEST,\n                      \"step\": step, \"slope\": pair(slope), \"intercept\": pair(intercept)})\n    final_path = directory / f\"step-{step:04d}.json\"\n    with tempfile.NamedTemporaryFile(dir=directory, delete=False) as stream:\n        temp_path = Path(stream.name)\n        try:\n            stream.write(payload)\n            stream.flush()\n            os.fsync(stream.fileno())\n        except BaseException:\n            temp_path.unlink(missing_ok=True)\n            raise\n    try:\n        os.replace(temp_path, final_path)\n        directory_fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY)\n        try:\n            os.fsync(directory_fd)\n        finally:\n            os.close(directory_fd)\n    finally:\n        temp_path.unlink(missing_ok=True)\n    emit(\"committed\", step=step, sha256=hashlib.sha256(payload).hexdigest())\n\n\ndef valid_fraction(parts):\n    return (isinstance(parts, list) and len(parts) == 2 and\n            all(type(value) is int for value in parts) and\n            parts[1] \u003e 0 and math.gcd(*parts) == 1)\n\n\ndef load_step_four(directory):\n    path = directory / \"step-0004.json\"\n    if not path.is_file():\n        emit(\"missing_checkpoint\", step=4)\n        raise SystemExit(41)\n    if set(directory.glob(\"step-*.json\")) != {path}:\n        emit(\"unexpected_checkpoint_set\")\n        raise SystemExit(43)\n    payload = path.read_bytes()\n    digest = hashlib.sha256(payload).hexdigest()\n    if digest != os.environ.get(\"EXPECTED_H4\"):\n        emit(\"checkpoint_digest_mismatch\", step=4, observed=digest)\n        raise SystemExit(43)\n    record = json.loads(payload)\n    if not (type(record) is dict and set(record) == {\n            \"schema_version\", \"fixture_digest\", \"step\", \"slope\", \"intercept\"}\n            and type(record[\"schema_version\"]) is int and record[\"schema_version\"] == 1\n            and type(record[\"step\"]) is int and record[\"step\"] == 4\n            and record[\"fixture_digest\"] == FIXTURE_DIGEST\n            and valid_fraction(record[\"slope\"]) and valid_fraction(record[\"intercept\"])\n            and encode(record) == payload):\n        emit(\"invalid_checkpoint\", step=4)\n        raise SystemExit(43)\n    emit(\"loaded\", step=4, sha256=digest)\n    return record[\"step\"], Fraction(*record[\"slope\"]), Fraction(*record[\"intercept\"])\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"mode\", choices=[\"fresh\", \"resume\"])\n    parser.add_argument(\"--dir\", required=True, type=Path)\n    parser.add_argument(\"--steps\", type=int, default=12)\n    parser.add_argument(\"--save-every\", type=int, default=4)\n    parser.add_argument(\"--exit-after-update\", type=int)\n    args = parser.parse_args()\n    if args.steps \u003c 1 or args.save_every \u003c 1:\n        parser.error(\"steps and save-every must be positive\")\n    if args.mode == \"resume\":\n        start, slope, intercept = load_step_four(args.dir)\n    else:\n        args.dir.mkdir(parents=True, exist_ok=True)\n        if any(args.dir.iterdir()):\n            parser.error(\"fresh mode requires an empty directory\")\n        start, slope, intercept = 0, Fraction(0), Fraction(0)\n    emit(\"start\", step=start, loss=pair(loss(slope, intercept)), fixture_digest=FIXTURE_DIGEST)\n    for step in range(start + 1, args.steps + 1):\n        slope, intercept = update(slope, intercept)\n        emit(\"updated\", step=step)\n        if step % args.save_every == 0:\n            commit(args.dir, step, slope, intercept)\n        if step == args.exit_after_update:\n            emit(\"deliberate_exit\", step=step, code=42)\n            return 42\n    emit(\"finished\", step=args.steps, loss=pair(loss(slope, intercept)))\n    return 0\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n",
+                "verify.py": "\"\"\"Independent, read-only comparison of final checkpoint files.\"\"\"\nimport argparse\nimport hashlib\nimport json\nfrom pathlib import Path\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"reference\", type=Path)\n    parser.add_argument(\"resumed\", type=Path)\n    args = parser.parse_args()\n    results = []\n    for path in (args.reference, args.resumed):\n        raw = path.read_bytes()\n        checkpoint = json.loads(raw)\n        results.append({\"step\": checkpoint[\"step\"], \"sha256\": hashlib.sha256(raw).hexdigest()})\n    equal = (all(type(item[\"step\"]) is int and item[\"step\"] == 12 for item in results)\n             and results[0][\"sha256\"] == results[1][\"sha256\"])\n    print(json.dumps({\"event\": \"compared\", \"reference\": results[0], \"resumed\": results[1],\n                      \"matches\": equal}, sort_keys=True))\n    return 0 if equal else 1\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n"
+            },
+            "immutable": true,
+            "kind": "ConfigMap",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:58:33Z",
+                "name": "r1-fixtures",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395513149551024",
+                "uid": "00000000-0000-4000-8000-000000000001"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "data": {
+                "expected-h4": "a0c24c7c9c71e428a15dc9cd6c620fdfbc10caf16f289ea101027b54d223d69b"
+            },
+            "immutable": true,
+            "kind": "ConfigMap",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:59:01Z",
+                "name": "r1-reference-hash",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395541916175015",
+                "uid": "00000000-0000-4000-8000-000000000021"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "ServiceAccount",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:58:31Z",
+                "name": "default",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395511141119011",
+                "uid": "00000000-0000-4000-8000-000000000009"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "automountServiceAccountToken": false,
+            "kind": "ServiceAccount",
+            "metadata": {
+                "creationTimestamp": "2026-11-23T00:58:32Z",
+                "name": "training-sa",
+                "namespace": "paper-r1",
+                "resourceVersion": "1795395512105007002",
+                "uid": "00000000-0000-4000-8000-000000000010"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

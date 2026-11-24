@@ -1,0 +1,10 @@
+state/
+state/interrupted/
+state/interrupted/step-0004.json
+state/interrupted/step-0008.json
+state/interrupted/step-0012.json
+state/lost+found/
+state/reference/
+state/reference/step-0004.json
+state/reference/step-0008.json
+state/reference/step-0012.json

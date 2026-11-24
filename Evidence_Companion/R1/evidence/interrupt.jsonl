@@ -1,0 +1,9 @@
+{"event": "start", "fixture_digest": "29c6d26fd54bd9083506e45319059179741ef0a65430980e45162bf2ecedca52", "loss": [21, 1], "step": 0}
+{"event": "updated", "step": 1}
+{"event": "updated", "step": 2}
+{"event": "updated", "step": 3}
+{"event": "updated", "step": 4}
+{"event": "committed", "sha256": "a0c24c7c9c71e428a15dc9cd6c620fdfbc10caf16f289ea101027b54d223d69b", "step": 4}
+{"event": "updated", "step": 5}
+{"event": "updated", "step": 6}
+{"code": 42, "event": "deliberate_exit", "step": 6}
